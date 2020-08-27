@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Picker Captcha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="robot-check">
+            <div class="checkbox checked">
+                <i class="las la-check"></i>
+                <i class="las la-times"></i>
+                <i class="las la-lock"></i>
+            </div>
+            
+            <h2>I am <span class="not">not</span> a robot!</h2>
+
+            <div class="captcha-form">
+                <h3>Pick the flower to prove you are a human.</h3>
+
+                <h5 class="try-again">Try again!</h5>
+
+                <div class="flower-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewBox="0 0 250 250" class="flower">
+                        <linearGradient id="petal-gradient" x2="0" y2="1">
+                            <stop offset="0%" stop-color="rgba(6,190,225,1)" />
+                            <stop offset="100%" stop-color="rgba(23,104,172,1)" />
+                        </linearGradient>
+                        <g xmlns="http://www.w3.org/2000/svg" class="petals"></g>
+                        <circle cx="125" cy="125" r="40" fill="#e6ff00" />
+                    </svg>
+
+                    <div class="wait">Please wait <span class="ms"></span>ms before retrying.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

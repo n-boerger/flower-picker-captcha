@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    padding: 5rem 7rem;
+    background: rgb(23,104,172);
+    background: linear-gradient(135deg, rgba(23,104,172,1) 0%, rgba(6,190,225,1) 100%);
+    color: #fff;
+    border-radius: 2rem;
+    box-shadow: 0 0 12px 10px rgba(23,104,172,.15);
+    min-width: 710px;
+    transition: background .6s ease;
+}
+
+.container.robot {
+    background: #d60e00;
+}
+
+.container.human {
+    background: #64d600;
+}
+
+.robot-check {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.captcha-form {
+    position: absolute;
+    padding: 1rem 2rem;
+    min-width: 480px;
+    bottom: 100%;
+    left: -1.5rem;
+    background: #fff;
+    color: #333;
+    box-shadow: 0 0 12px 10px rgba(0,0,0,.15);
+    border-radius: 1.5rem;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
+}
+
+.checkbox.captcha-open ~ .captcha-form {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.captcha-form .flower-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 5px 5px 12px 0 rgba(0,0,0,.15);
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    user-select: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background: #fefefe;
+    font-family: 'Roboto', sans-serif;
+}
+
+.flower-container .wait {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    font-family: 'Roboto', sans-serif;
+    visibility: hidden;
+    opacity: 0;
+    background: rgba(0,0,0,.15);
+    padding: 1rem 1.5rem;
+    text-align: center;
+    z-index: 100;
+    font-size: 1.2rem;
+    transition: all .3s ease;
+}
+
+.flower-container.generating .wait {
+    visibility: visible;
+    opacity: 1;
+}
+
+.flower {
+    overflow: visible;
+    transition: transform .6s ease;
+}
+
+.flower .petals {
+    transform: translate(61px, 115px);
+}
+
+.flower .petal {
+    transform-box: fill-box;
+    transform-origin: top center;
+    fill: url(#petal-gradient);
+}
+
+.flower .petal > path {
+    transform-box: fill-box;
+    transform-origin: top center;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.flower .petal > path:hover {
+    transform: scale(1.1);
+}
+
+.flower .petal.picked > path {
+    transition: all 1.5s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(.8) translateY(150px) rotate(30deg);
+}
+
+.flower .petal.picked {
+    pointer-events: none;
+}
+
+.not {
+    display: none;
+}
+
+.not.human {
+    display: inline;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+}
+
+h3 {
+    line-height: 1;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+h5.try-again {
+    line-height: 1;
+    color: #d60e00;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+h5.try-again.show {
+    display: block;
+}
+
+.checkbox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    border: 3px solid #fff;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.container.robot .checkbox,
+.container.human .checkbox {
+    display: none;
+}
+
+.checkbox:not(.checked) .la-check,
+.checkbox.checked .la-times,
+.checkbox.loading .la-check,
+.checkbox.loading .la-times,
+.checkbox.captcha-open .la-check,
+.checkbox.captcha-open .la-times,
+.checkbox:not(.captcha-open) .la-lock {
+    display: none
+}
+
+.checkbox.loading {
+    border-width: 6px;
+    border-radius: 50%;
+    color: #fff;
+    border-color: #fff;
+    animation-name: loading;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    pointer-events: none;
+}
+
+.checkbox.captcha-open {
+    pointer-events: none;
+}
+
+.checkbox.loading::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: -4px;
+    left: -4px;
+    bottom: -4px;
+    right: -4px;
+    border: 2px solid #1768AC;
+    border-top-color: transparent;
+    border-radius: 50%;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
